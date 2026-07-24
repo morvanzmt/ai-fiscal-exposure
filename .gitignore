@@ -1,0 +1,31 @@
+# Data is never committed. See data/README.md for retrieval.
+data/raw/*
+data/interim/*
+!data/raw/.gitkeep
+!data/interim/.gitkeep
+
+# Outputs: figures and tables are committed (they are the deliverable),
+# the manifest is committed (it is the provenance record).
+output/**/*.tmp
+
+# Local config may contain absolute paths
+config/config.yaml
+
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+build/
+dist/
+.venv/
+venv/
+.pytest_cache/
+.coverage
+htmlcov/
+.ruff_cache/
+
+# Notebooks
+.ipynb_checkpoints/
+
+# OS
+.DS_Store

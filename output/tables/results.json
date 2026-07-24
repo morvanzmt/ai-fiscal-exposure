@@ -1,0 +1,40 @@
+{
+  "provisional": true,
+  "headline": {
+    "employment_share": 0.26035240026664186,
+    "wage_share": 0.3175382149439379,
+    "iit_share": 0.35187521058196514,
+    "oasdi_share": 0.30706773275894345,
+    "amplification_wage": 1.2196477336822276,
+    "amplification_iit": 1.351534344302528,
+    "amplification_oasdi": 1.179431157325447
+  },
+  "crosswalk_code_coverage": 1.0,
+  "crosswalk_employment_coverage": 1.0,
+  "weighted_exposure_match_rate": 1.0,
+  "bin_report": "4 bins, edges [0.0, 0.0317, 0.1666, 0.3881, 0.9148]; zero-exposure employment share 20.8%",
+  "tax_method": "approx:2025",
+  "universe": {
+    "rows_initial": 60000,
+    "weighted_initial": 102317508.28,
+    "rows_final": 60000,
+    "weighted_final": 102317508.28,
+    "steps": {
+      "age": {
+        "rows_before": 60000,
+        "rows_after": 60000,
+        "weighted_after": 102317508.28
+      },
+      "positive_wage": {
+        "rows_before": 60000,
+        "rows_after": 60000,
+        "weighted_after": 102317508.28
+      },
+      "positive_weight": {
+        "rows_before": 60000,
+        "rows_after": 60000,
+        "weighted_after": 102317508.28
+      }
+    }
+  }
+}

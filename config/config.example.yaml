@@ -1,0 +1,69 @@
+# Real-data configuration template.
+#
+# Copy to config/config.yaml and fill the FILL_ME fields after running
+# scripts/00_inspect_schemas.py. Leaving occ_col / score_col null makes the
+# loader guess and report; that is fine for a first look and wrong for a
+# published run.
+
+paths:
+  raw: data/raw
+  interim: data/interim
+  figures: output/figures
+  tables: output/tables
+  manifest: output/manifest.json
+
+exposure:
+  # Anthropic Economic Index, labor_market_impacts release (CC-BY)
+  # https://huggingface.co/datasets/Anthropic/EconomicIndex/tree/main/labor_market_impacts
+  source: anthropic_economic_index
+  file_glob: "aei/labor_market_impacts/**/*.csv"
+  occ_col: null        # FILL_ME after inspection
+  score_col: null      # FILL_ME after inspection
+  occ_code_kind: onet_soc
+  score_range: [0.0, 1.0]
+
+crosswalk:
+  # Eckhardt & Goldschlag (2025), Economic Innovation Group.
+  # The same crosswalk used by Massenkoff & McCrory (2026).
+  # https://eig.org/ai-and-jobs-the-final-word/
+  source: eig_eckhardt_goldschlag_2025
+  file_glob: "crosswalk/*.csv"
+  from_col: FILL_ME
+  to_col: FILL_ME
+  weight_col: null     # optional BLS OES employment for many-to-one aggregation
+
+cps:
+  # IPUMS CPS ASEC extract. https://cps.ipums.org/cps/
+  # Submit the extract FIRST; it is the blocking dependency.
+  source: ipums
+  file_glob: "cps/*.csv*"  # matches .csv and .csv.gz
+  weight_col: asecwt
+  occ_col: occ1990    # match to the crosswalk's target coding
+  wage_col: incwage
+  year_col: year
+  min_age: 16
+  max_age: 99
+  require_positive_wage: true
+
+analysis:
+  n_quantiles: 4
+  quantile_weight: employment
+  treatment_cutoffs: [0.50, 0.60, 0.70, 0.75, 0.90, 0.95]
+  zero_exposure_threshold: 0.0
+  payroll_taxable_max: null
+  seed: 20260726
+
+tax:
+  method: approx       # switch to taxsim once household variables are in the extract
+  year: 2025
+  taxable_max: 176100.0
+  standard_deduction: 15000.0
+  source: "FILL_ME - cite IRS Rev. Proc. and https://www.ssa.gov/oact/cola/cbb.html"
+  brackets:
+    - [0, 0.10]
+    - [11925, 0.12]
+    - [48475, 0.22]
+    - [103350, 0.24]
+    - [197300, 0.32]
+    - [250525, 0.35]
+    - [626350, 0.37]

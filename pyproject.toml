@@ -1,0 +1,52 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "fiscal-exposure"
+version = "0.1.0"
+description = "Employment exposure is not fiscal exposure: AI exposure and the composition of the US federal tax base"
+readme = "README.md"
+requires-python = ">=3.11"
+license = { text = "MIT" }
+authors = [{ name = "Matthew Morvan", email = "matthew.morvan@gmail.com" }]
+keywords = ["ai", "labor-economics", "public-finance", "tax-policy"]
+
+dependencies = [
+    "pandas>=2.2",
+    "numpy>=1.26",
+    "matplotlib>=3.8",
+    "pyyaml>=6.0",
+    "pyarrow>=15.0",
+    "requests>=2.31",
+]
+
+[project.optional-dependencies]
+fetch = ["huggingface-hub>=0.23"]
+notebook = ["jupyter>=1.0", "ipykernel>=6.29"]
+dev = ["pytest>=8.0", "pytest-cov>=5.0", "ruff>=0.5"]
+
+[project.urls]
+Repository = "https://github.com/morvanzmt/ai-fiscal-exposure"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/fiscal_exposure"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-q --strict-markers"
+filterwarnings = ["ignore::UserWarning"]
+
+[tool.ruff]
+line-length = 90
+src = ["src", "scripts", "tests"]
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B", "SIM"]
+
+[tool.ruff.lint.per-file-ignores]
+# Notebook narrative is stored as long prose strings; wrapping hurts readability.
+"scripts/_make_notebook.py" = ["E501"]
+
+[tool.coverage.run]
+source = ["src/fiscal_exposure"]

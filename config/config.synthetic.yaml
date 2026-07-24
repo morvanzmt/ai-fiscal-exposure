@@ -1,0 +1,63 @@
+# Synthetic configuration.
+#
+# Runs the full pipeline on generated fixtures so the machinery can be checked
+# before any download completes. Copy to config/config.yaml and swap the source
+# blocks once the real extracts land.
+
+paths:
+  raw: data/raw
+  interim: data/interim
+  figures: output/figures
+  tables: output/tables
+  manifest: output/manifest.json
+
+exposure:
+  source: synthetic
+  file_glob: "synthetic_exposure.csv"
+  occ_col: onetsoc_code
+  score_col: observed_exposure
+  occ_code_kind: onet_soc
+  score_range: [0.0, 1.0]
+
+crosswalk:
+  source: synthetic
+  file_glob: "synthetic_crosswalk.csv"
+  from_col: onetsoc_code
+  to_col: cps_occ
+  weight_col: oes_employment
+
+cps:
+  source: synthetic
+  file_glob: "synthetic_cps_asec.csv"
+  weight_col: asecwt
+  occ_col: occ
+  wage_col: incwage
+  year_col: year
+  min_age: 16
+  max_age: 99
+  require_positive_wage: true
+
+analysis:
+  n_quantiles: 4
+  quantile_weight: employment
+  treatment_cutoffs: [0.50, 0.60, 0.70, 0.75, 0.90, 0.95]
+  zero_exposure_threshold: 0.0
+  payroll_taxable_max: null   # set from https://www.ssa.gov/oact/cola/cbb.html
+  seed: 20260726
+
+# Statutory parameters for the approximation path. These are PLACEHOLDERS.
+# Replace with cited values before any published run, and record the source.
+tax:
+  method: approx
+  year: 2025
+  taxable_max: 176100.0
+  standard_deduction: 15000.0
+  source: "PLACEHOLDER - verify against IRS Rev. Proc. and SSA CBB before publishing"
+  brackets:
+    - [0, 0.10]
+    - [11925, 0.12]
+    - [48475, 0.22]
+    - [103350, 0.24]
+    - [197300, 0.32]
+    - [250525, 0.35]
+    - [626350, 0.37]

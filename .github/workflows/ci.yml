@@ -1,0 +1,28 @@
+name: ci
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: ["3.11", "3.12"]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v3
+      - name: Set up Python
+        run: uv python install ${{ matrix.python-version }}
+      - name: Install
+        run: uv pip install --system -e ".[dev]"
+      - name: Lint
+        run: ruff check src scripts tests
+      - name: Test
+        run: pytest --cov --cov-report=term-missing
+      - name: End-to-end on synthetic fixtures
+        run: |
+          python scripts/01_fetch.py --synthetic
+          python scripts/02_build_dataset.py --config config/config.synthetic.yaml
