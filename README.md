@@ -16,13 +16,13 @@ That number is what this repository produces.
 
 ## Two taxes, and why they diverge
 
-The result turns on a structural difference between the two taxes funding the American state, so it is worth stating plainly.
+The result depends on a structural difference between the two taxes funding the American state.
 
 **Federal income tax** is progressive. Rates rise through brackets as income rises, up to 37%. Someone earning four times the median pays considerably more than four times the tax.
 
 **Payroll tax** is levied separately on wages and funds specific programmes rather than the general budget. Its larger component, **OASDI** (Old Age, Survivors, and Disability Insurance, which is Social Security), is charged at 6.2% on the employee side, but **only up to a ceiling**: $176,100 in 2025. Above that, the marginal rate is zero.
 
-Two workers make the consequence concrete:
+For example:
 
 | Wage | OASDI owed | Income tax |
 |---|---|---|
@@ -31,11 +31,19 @@ Two workers make the consequence concrete:
 
 The second earns five times the first but contributes barely twice as much to Social Security. Income tax has no such ceiling.
 
-So the two taxes draw on different parts of the wage distribution. Income tax is sensitive to the top; OASDI is deliberately blind to it. If AI exposure concentrates at the top of the wage distribution, displacement in exposed occupations should threaten general revenue more than it threatens the trust funds. That is testable, and testing it is the point.
+So the two taxes draw on different parts of the wage distribution. Income tax is sensitive to the top; OASDI is deliberately blind to it. If AI exposure concentrates at the top of the wage distribution, displacement in exposed occupations should threaten general revenue more than it threatens the trust funds. This is what we test next.
 
 ## What I did
 
-I joined Anthropic's published occupation-level AI exposure data to CPS household microdata, then computed each exposure group's share of employment, wages, federal income tax and OASDI liability, and compared them.
+Three predictions follow from that asymmetry, each falsifiable on public data.
+
+**P1. The wage base is more exposed than the workforce.** Exposed occupations pay better, so their share of national wages should exceed their share of employment. *Refuted if* wage amplification is at or below 1.
+
+**P2. The income-tax base is more exposed than the wage base.** Progressivity turns a given earnings premium into a larger tax premium. *Refuted if* income-tax amplification does not exceed wage amplification.
+
+**P3. The payroll-tax base is less exposed than the income-tax base.** The taxable maximum truncates OASDI liability precisely where exposure concentrates. *Refuted if* the two are equal, or payroll exceeds income tax.
+
+To test them, I joined Anthropic's published occupation-level AI exposure data to CPS household microdata, then computed each exposure group's share of employment, wages, federal income tax and OASDI liability, and compared them.
 
 - **Exposure:** the *observed exposure* measure of Massenkoff and McCrory (2026), from the Anthropic Economic Index. It is the share of an occupation's time-weighted tasks that are both theoretically feasible for a language model and actually observed in work-related Claude usage, with automated use weighted above augmentative use.
 - **Population and earnings:** CPS ASEC 2024 and 2025 via IPUMS, restricted to employed people with positive wage income.
@@ -67,7 +75,7 @@ Read the first column as: workers in occupations with no measured AI exposure ar
 | Federal income tax | **0.54** | **1.18** | **1.19** |
 | Payroll tax (OASDI) | 0.73 | 1.10 | 1.13 |
 
-Three findings follow.
+For the top quartile the ordering is income tax (1.19) above wages (1.14) above payroll (1.13). All three predictions hold, P3 by a narrow margin. Three findings follow.
 
 ### 1. The tax base is considerably more exposed than the workforce
 
@@ -77,9 +85,9 @@ Per worker, someone in a top-quartile exposed occupation pays **2.2 times** the 
 
 ### 2. It is a threshold, not a gradient
 
-This is the part I did not expect. Income tax amplification runs 0.54, then 1.18, then 1.19. Almost all the movement happens at the boundary between zero exposure and any exposure at all (+0.65). Across the whole remaining range, from moderately exposed to most exposed, it moves by +0.01.
+Income tax amplification runs 0.54, then 1.18, then 1.19. Almost all the movement happens at the boundary between zero exposure and any exposure at all (+0.65). Across the whole remaining range, from moderately exposed to most exposed, it moves by +0.01.
 
-Knowing *whether* an occupation has AI-touchable tasks tells you nearly everything about its fiscal weight. Knowing *how many* tells you almost nothing further.
+Knowing *whether* an occupation has AI-touchable tasks tells you nearly everything about its fiscal weight. Knowing *how many* tells you almost nothing further. This was not one of the predictions above; it emerged from the data.
 
 That has a practical implication. Nearly all work with these measures ranks occupations continuously and studies the top quintile. For fiscal purposes that is the wrong cut. An early-warning indicator built on this data should track the size of the zero-exposure group, not the intensity of exposure at the top.
 
@@ -91,7 +99,7 @@ Unexposed employment is relatively payroll-financed; exposed employment relative
 
 That inverts the industrial-robot era, when displacement fell in the middle of the wage distribution. It matters for the policy question, because it says which programme comes under strain first, and general revenue and the trust funds are governed by entirely different political constraints.
 
-The direct top-quartile test of this is weaker than the mechanism alone predicts: income tax amplification 1.19 against OASDI 1.13, a gap of only +0.07. The reason is a data limitation, and it is worth being precise about it.
+Note that this comparison, built on the zero-exposure group, is sharper than the direct top-quartile test of P3, where income tax at 1.19 beats OASDI at only 1.13. The mechanism shows either way, but that +0.07 margin is thinner than the taxable maximum alone predicts. The reason is a data limitation, and it is worth being precise about it.
 
 ## What this is and is not
 
@@ -105,23 +113,50 @@ A static accounting of the composition of **today's** tax base. It measures how 
 
 ### Why the payroll result is understated
 
-Two limitations push the same way, and both bite hardest exactly where the mechanism lives.
+There are two main limitations to highlight:
 
 **CPS top-codes wage income.** The taxable maximum sits near the top 6% of earners, so OASDI compression is an upper-tail phenomenon. That tail is precisely what top-coding flattens. The estimate is conservative by construction.
 
 **The tax function is crude.** Liability comes from statutory brackets on wage income for a single filer, with no dependants, credits, or non-wage income. It preserves progressivity, which is all the amplification result depends on, but it misstates levels and cannot capture how filing status and capital income redistribute liability at the top.
 
-Neither casts doubt on the direction. Both are arguments for better data, which is the next step rather than an excuse.
+Neither casts doubt on the direction. Both are arguments for better data, which should be the next step.
 
 ### Checks that passed
 
 - The zero-exposure group is **28.9%** of weighted employment, against roughly 30% in Anthropic's own work. This is the strongest validation available: their group boundary reconstructed from public data through an independent crosswalk, landing within a percentage point.
 - The crosswalk covers **93.9%** of CPS occupation codes and **94.4%** of weighted employment.
-- The implied wage gap between top-quartile and zero-exposure workers is **+65%**, against roughly +47% reported by Anthropic. Larger, same direction. The likely cause is that this analysis restricts to employed people with positive wage income, a narrower universe than theirs.
+- The result is stable across treatment cutoffs from the 50th to the 80th percentile of exposure (panel C). Above the 90th the income-tax curve rises while payroll flattens, which is the taxable maximum becoming binding rather than noise.
 
-### One join caveat
+### The wage-gap discrepancy
 
-Where a Census occupation category spans several SOC occupations, exposure is averaged **equally** across them. Weighting by BLS OES employment would be better. The configuration hook exists (`crosswalk.weight_col`) and is currently unused.
+The implied wage gap between top-quartile and zero-exposure workers here is **+65%**, against roughly **+47%** reported by Anthropic. My first explanation was that this analysis restricts to employed people with positive wage income, a narrower universe than theirs. **That explanation is wrong**, and it fails in a way worth recording: excluding zero-wage people removes them disproportionately from low-exposure occupations, which *raises* the zero-exposure group's mean wage and therefore *shrinks* the gap. It cannot produce a larger one.
+
+The likely cause is the reference group. On identical data:
+
+| Comparison | Implied wage gap |
+|---|---|
+| Top quartile vs zero-exposure group | +65% |
+| Top quartile vs all other workers | +19% |
+| Top quartile vs middle group | +1% |
+
+Reference-group choice moves the number by 46 percentage points, and Anthropic's +47% sits inside that range, so this is most likely definitional rather than a data fault. Two further candidates, both testable with variables already in the extract and both pushing in the correct direction:
+
+- **Annual versus hourly wages.** I use annual wage and salary income, which embeds hours and weeks worked. Exposed occupations are disproportionately salaried and full-year, so an annual gap should exceed an hourly one. Recompute using `WKSWORK1` and `UHRSWORKLY`.
+- **Occupation coding granularity.** Massenkoff and McCrory match to harmonised `occ1990` codes, which are coarser than 2018 Census codes. Coarser categories mix exposed and unexposed workers together and attenuate measured differences, so finer coding should widen the gap.
+
+## What still needs verifying
+
+Ordered by how much each could move the result. The first two are prerequisites for treating any number above as final.
+
+**1. The tax parameters are unverified.** Brackets, the standard deduction and the taxable maximum in `config/` are plausible values not yet traced to a citation, and every tax figure inherits that. Fix: take the brackets from the relevant IRS Revenue Procedure and the contribution base from the SSA table, and record both in `tax.source`. Until then the amplification *orderings* are trustworthy, since they depend only on progressivity and the existence of a cap, but the levels are not.
+
+**2. The occupation vintage is inferred, not confirmed.** The pipeline assumes IPUMS `OCC` is on the 2018 Census basis for ASEC 2024 and 2025, which is what the Census crosswalk targets. Coverage of 94.4% is consistent with that but does not prove it: a wrong-vintage merge can still reach high coverage where code ranges overlap, and would then quietly misassign exposure. Fix: spot-check a dozen `OCC` codes against the published 2018 Census title list, or rerun with `occ2010` and the 2010 code list and compare.
+
+**3. The crosswalk aggregation is unweighted.** Where a Census occupation category spans several SOC occupations, exposure is averaged **equally** across them, so a small occupation counts as much as a large one. Fix: add BLS OES employment as `crosswalk.weight_col`; the hook exists and is unused. This could shift group boundaries, and it is a likely source of divergence from Anthropic's own figures.
+
+**4. The threshold result rests on one exposure measure.** Finding 2 is the most novel claim here and has been tested against exactly one instrument. Fix: rerun with the Eloundou et al. theoretical-capability scores, and with the AEI task-penetration file aggregated independently. A threshold that appears under one measure and not another is a property of the measure, not of the economy.
+
+**5. P3 needs a real tax calculator.** Running TAXSIM with the household variables already in the extract would settle whether the thin +0.07 margin is a measurement artefact or a genuinely weak effect. If the margin widens, the diagnosis above is confirmed. If it does not, that is worth reporting.
 
 ## What this opens onto
 
@@ -168,15 +203,13 @@ Every pipeline step appends to `output/manifest.json`: the files read and writte
 Several of the 29 tests exist because they catch errors that eyeballing a figure never would:
 
 - Tied exposure scores must not be split across bins. 29% of workers sit at exactly zero, and a naive quantile cut would divide them arbitrarily. The binning code warns when this happens, which is why the headline uses the zero-versus-top contrast rather than raw quartiles.
-- OASDI liability must flatten above the taxable maximum. That is the entire mechanism behind the payroll result.
+- OASDI liability must flatten above the taxable maximum. That is the entire mechanism behind P3.
 - IPUMS sentinel values (`99999999` for not-in-universe) must be cleared before any arithmetic, or they enter weighted totals as hundred-million-dollar salaries.
 - Census occupation codes must keep their leading zeros, or `0010` becomes `10` and silently fails to merge.
 
 ## Method note on the crosswalk
 
-Two details in the SOC-to-Census join are easy to get wrong, and both fail quietly rather than loudly.
-
-The Census list frequently maps one Census code to a SOC **broad group** (`11-9030`) while exposure is published at the **detailed** level (`11-9031`). Since a trailing zero marks a group rather than an occupation, these must be expanded hierarchically. Without it, roughly a third of exposure codes silently fail to match, and the ones that go missing are not random: they are disproportionately the large white-collar categories this analysis is about.
+The Census list frequently maps one Census code to a SOC **broad group** (`11-9030`) while exposure is published at the **detailed** level (`11-9031`). Since a trailing zero marks a group rather than an occupation, these must be expanded hierarchically. Without it, roughly a third of exposure codes fail to match, and the ones that go missing are not random: they are disproportionately the large white-collar categories this analysis is about.
 
 The Census workbook also contains a 2010-to-2018 sheet that merges perfectly well while being on the wrong vintage. Sheets are therefore ranked by name rather than chosen on volume of matches.
 
