@@ -323,5 +323,791 @@
     "metrics": {},
     "git_revision": "3f27a87557d07f3c7aacdf37c0cde5d7c5937844",
     "python": "3.13.2"
+  },
+  {
+    "step": "02_build:exposure",
+    "started_at": "2026-07-25T10:41:03+00:00",
+    "finished_at": "2026-07-25T10:41:04+00:00",
+    "inputs": {},
+    "outputs": {},
+    "params": {},
+    "metrics": {
+      "n_occupations": 756,
+      "mean_exposure": 0.07697671957671957
+    },
+    "git_revision": "f6bed35db12aecf401f4df19ebf1355c4b60adc2",
+    "python": "3.13.2"
+  },
+  {
+    "step": "02_build:cps",
+    "started_at": "2026-07-25T10:41:04+00:00",
+    "finished_at": "2026-07-25T10:41:05+00:00",
+    "inputs": {},
+    "outputs": {},
+    "params": {},
+    "metrics": {
+      "rows_final": 125239,
+      "weighted_final": 299770984.71
+    },
+    "git_revision": "f6bed35db12aecf401f4df19ebf1355c4b60adc2",
+    "python": "3.13.2"
+  },
+  {
+    "step": "02_build:crosswalk",
+    "started_at": "2026-07-25T10:41:05+00:00",
+    "finished_at": "2026-07-25T10:41:05+00:00",
+    "inputs": {},
+    "outputs": {},
+    "params": {},
+    "metrics": {
+      "code_coverage": 0.9389312977099237,
+      "employment_coverage": 0.9444136108232087,
+      "n_mapped_cps_codes": 492
+    },
+    "git_revision": "f6bed35db12aecf401f4df19ebf1355c4b60adc2",
+    "python": "3.13.2"
+  },
+  {
+    "step": "02_build:tax",
+    "started_at": "2026-07-25T10:41:05+00:00",
+    "finished_at": "2026-07-25T10:41:05+00:00",
+    "inputs": {},
+    "outputs": {},
+    "params": {
+      "method": "approx",
+      "year": 2025,
+      "taxable_max": 176100.0,
+      "standard_deduction": 15000.0,
+      "source": "UNVERIFIED placeholder - replace with cited IRS/SSA values",
+      "brackets": [
+        [
+          0,
+          0.1
+        ],
+        [
+          11925,
+          0.12
+        ],
+        [
+          48475,
+          0.22
+        ],
+        [
+          103350,
+          0.24
+        ],
+        [
+          197300,
+          0.32
+        ],
+        [
+          250525,
+          0.35
+        ],
+        [
+          626350,
+          0.37
+        ]
+      ]
+    },
+    "metrics": {
+      "tax_method": "approx:2025",
+      "params_source": "UNVERIFIED placeholder - replace with cited IRS/SSA values"
+    },
+    "git_revision": "f6bed35db12aecf401f4df19ebf1355c4b60adc2",
+    "python": "3.13.2"
+  },
+  {
+    "step": "02_build:shares",
+    "started_at": "2026-07-25T10:41:05+00:00",
+    "finished_at": "2026-07-25T10:41:06+00:00",
+    "inputs": {},
+    "outputs": {},
+    "params": {},
+    "metrics": {
+      "employment_share": 0.25204809366401015,
+      "wage_share": 0.2864756457695377,
+      "iit_share": 0.30081620434548395,
+      "oasdi_share": 0.2843557643637123,
+      "amplification_wage": 1.1365912021196274,
+      "amplification_iit": 1.1934873220921225,
+      "amplification_oasdi": 1.128180579468177
+    },
+    "git_revision": "f6bed35db12aecf401f4df19ebf1355c4b60adc2",
+    "python": "3.13.2"
+  },
+  {
+    "step": "02_build:write",
+    "started_at": "2026-07-25T10:41:06+00:00",
+    "finished_at": "2026-07-25T10:41:11+00:00",
+    "inputs": {},
+    "outputs": {
+      "/Users/timothymorvan/Desktop/ai-fiscal-exposure/output/tables/shares_by_contrast_group.csv": "sha256:7b59e87aff5cbf623c24bf3ffbfb1d95e0f5a8fee3d7bc82ec69e9f43e050a75",
+      "/Users/timothymorvan/Desktop/ai-fiscal-exposure/output/tables/shares_by_quartile.csv": "sha256:641a0814b928988724b902ef839da66e837ce16c3bb5581b5660ed656c33a0c3",
+      "/Users/timothymorvan/Desktop/ai-fiscal-exposure/output/tables/amplification_by_contrast_group.csv": "sha256:699b7b89fbc13ddb528f576258e6787493cb47b0eff77b4cf9259c45558ec378",
+      "/Users/timothymorvan/Desktop/ai-fiscal-exposure/output/tables/cutoff_sensitivity.csv": "sha256:39e3191b5fda4f07b00f7ec6898b014f2d351fdd1abac5201e20c964308e3ba9",
+      "/Users/timothymorvan/Desktop/ai-fiscal-exposure/output/figures/fig1_fiscal_exposure.png": "sha256:22b0d60bf1f4f5108f19254a6349edf3b5a6063ab74d7d7772ebb1e197cad997",
+      "/Users/timothymorvan/Desktop/ai-fiscal-exposure/output/figures/fig1_fiscal_exposure.pdf": "sha256:2a1d66a353b0766d0e1dcc9b7e336deb4f0f502ee76bd443f8e29ece9c9c9582",
+      "/Users/timothymorvan/Desktop/ai-fiscal-exposure/output/tables/results.json": "sha256:e752209821c7c3c3da3eb2015bdbb2193067e068d65dcbaf3915a49b7af2a9ed"
+    },
+    "params": {},
+    "metrics": {},
+    "git_revision": "f6bed35db12aecf401f4df19ebf1355c4b60adc2",
+    "python": "3.13.2"
+  },
+  {
+    "step": "02_build:exposure",
+    "started_at": "2026-07-25T10:47:55+00:00",
+    "finished_at": "2026-07-25T10:47:55+00:00",
+    "inputs": {},
+    "outputs": {},
+    "params": {},
+    "metrics": {
+      "n_occupations": 756,
+      "mean_exposure": 0.07697671957671957
+    },
+    "git_revision": "f6bed35db12aecf401f4df19ebf1355c4b60adc2",
+    "python": "3.13.2"
+  },
+  {
+    "step": "02_build:cps",
+    "started_at": "2026-07-25T10:47:55+00:00",
+    "finished_at": "2026-07-25T10:47:56+00:00",
+    "inputs": {},
+    "outputs": {},
+    "params": {},
+    "metrics": {
+      "rows_final": 125239,
+      "weighted_final": 299770984.71
+    },
+    "git_revision": "f6bed35db12aecf401f4df19ebf1355c4b60adc2",
+    "python": "3.13.2"
+  },
+  {
+    "step": "02_build:crosswalk",
+    "started_at": "2026-07-25T10:47:56+00:00",
+    "finished_at": "2026-07-25T10:47:56+00:00",
+    "inputs": {},
+    "outputs": {},
+    "params": {},
+    "metrics": {
+      "code_coverage": 0.9389312977099237,
+      "employment_coverage": 0.9444136108232087,
+      "n_mapped_cps_codes": 492
+    },
+    "git_revision": "f6bed35db12aecf401f4df19ebf1355c4b60adc2",
+    "python": "3.13.2"
+  },
+  {
+    "step": "02_build:tax",
+    "started_at": "2026-07-25T10:47:56+00:00",
+    "finished_at": "2026-07-25T10:47:56+00:00",
+    "inputs": {},
+    "outputs": {},
+    "params": {
+      "method": "approx",
+      "year": 2025,
+      "taxable_max": 176100.0,
+      "standard_deduction": 15000.0,
+      "source": "UNVERIFIED placeholder - replace with cited IRS/SSA values",
+      "brackets": [
+        [
+          0,
+          0.1
+        ],
+        [
+          11925,
+          0.12
+        ],
+        [
+          48475,
+          0.22
+        ],
+        [
+          103350,
+          0.24
+        ],
+        [
+          197300,
+          0.32
+        ],
+        [
+          250525,
+          0.35
+        ],
+        [
+          626350,
+          0.37
+        ]
+      ]
+    },
+    "metrics": {
+      "tax_method": "approx:2025",
+      "params_source": "UNVERIFIED placeholder - replace with cited IRS/SSA values"
+    },
+    "git_revision": "f6bed35db12aecf401f4df19ebf1355c4b60adc2",
+    "python": "3.13.2"
+  },
+  {
+    "step": "02_build:shares",
+    "started_at": "2026-07-25T10:47:56+00:00",
+    "finished_at": "2026-07-25T10:47:56+00:00",
+    "inputs": {},
+    "outputs": {},
+    "params": {},
+    "metrics": {
+      "employment_share": 0.25204809366401015,
+      "wage_share": 0.2864756457695377,
+      "iit_share": 0.30081620434548395,
+      "oasdi_share": 0.2843557643637123,
+      "amplification_wage": 1.1365912021196274,
+      "amplification_iit": 1.1934873220921225,
+      "amplification_oasdi": 1.128180579468177
+    },
+    "git_revision": "f6bed35db12aecf401f4df19ebf1355c4b60adc2",
+    "python": "3.13.2"
+  },
+  {
+    "step": "02_build:write",
+    "started_at": "2026-07-25T10:47:56+00:00",
+    "finished_at": "2026-07-25T10:47:58+00:00",
+    "inputs": {},
+    "outputs": {
+      "/Users/timothymorvan/Desktop/ai-fiscal-exposure/output/tables/shares_by_contrast_group.csv": "sha256:7b59e87aff5cbf623c24bf3ffbfb1d95e0f5a8fee3d7bc82ec69e9f43e050a75",
+      "/Users/timothymorvan/Desktop/ai-fiscal-exposure/output/tables/shares_by_quartile.csv": "sha256:641a0814b928988724b902ef839da66e837ce16c3bb5581b5660ed656c33a0c3",
+      "/Users/timothymorvan/Desktop/ai-fiscal-exposure/output/tables/amplification_by_contrast_group.csv": "sha256:699b7b89fbc13ddb528f576258e6787493cb47b0eff77b4cf9259c45558ec378",
+      "/Users/timothymorvan/Desktop/ai-fiscal-exposure/output/tables/cutoff_sensitivity.csv": "sha256:39e3191b5fda4f07b00f7ec6898b014f2d351fdd1abac5201e20c964308e3ba9",
+      "/Users/timothymorvan/Desktop/ai-fiscal-exposure/output/figures/fig1_fiscal_exposure.png": "sha256:c2f77e627867a3fd25b7eb41c335a44cd8eca0cba53b18a6974f50b17c3ccb10",
+      "/Users/timothymorvan/Desktop/ai-fiscal-exposure/output/figures/fig1_fiscal_exposure.pdf": "sha256:7b68302f77c8349c99d581dafab093fbd169f750f9f03eef28aa5ff74e00d5ac",
+      "/Users/timothymorvan/Desktop/ai-fiscal-exposure/output/tables/results.json": "sha256:e752209821c7c3c3da3eb2015bdbb2193067e068d65dcbaf3915a49b7af2a9ed"
+    },
+    "params": {},
+    "metrics": {},
+    "git_revision": "f6bed35db12aecf401f4df19ebf1355c4b60adc2",
+    "python": "3.13.2"
+  },
+  {
+    "step": "02_build:exposure",
+    "started_at": "2026-07-25T10:49:13+00:00",
+    "finished_at": "2026-07-25T10:49:14+00:00",
+    "inputs": {},
+    "outputs": {},
+    "params": {},
+    "metrics": {
+      "n_occupations": 756,
+      "mean_exposure": 0.07697671957671957
+    },
+    "git_revision": "f6bed35db12aecf401f4df19ebf1355c4b60adc2",
+    "python": "3.13.2"
+  },
+  {
+    "step": "02_build:cps",
+    "started_at": "2026-07-25T10:49:14+00:00",
+    "finished_at": "2026-07-25T10:49:14+00:00",
+    "inputs": {},
+    "outputs": {},
+    "params": {},
+    "metrics": {
+      "rows_final": 125239,
+      "weighted_final": 299770984.71
+    },
+    "git_revision": "f6bed35db12aecf401f4df19ebf1355c4b60adc2",
+    "python": "3.13.2"
+  },
+  {
+    "step": "02_build:crosswalk",
+    "started_at": "2026-07-25T10:49:14+00:00",
+    "finished_at": "2026-07-25T10:49:14+00:00",
+    "inputs": {},
+    "outputs": {},
+    "params": {},
+    "metrics": {
+      "code_coverage": 0.9389312977099237,
+      "employment_coverage": 0.9444136108232087,
+      "n_mapped_cps_codes": 492
+    },
+    "git_revision": "f6bed35db12aecf401f4df19ebf1355c4b60adc2",
+    "python": "3.13.2"
+  },
+  {
+    "step": "02_build:tax",
+    "started_at": "2026-07-25T10:49:14+00:00",
+    "finished_at": "2026-07-25T10:49:14+00:00",
+    "inputs": {},
+    "outputs": {},
+    "params": {
+      "method": "approx",
+      "year": 2025,
+      "taxable_max": 176100.0,
+      "standard_deduction": 15000.0,
+      "source": "UNVERIFIED placeholder - replace with cited IRS/SSA values",
+      "brackets": [
+        [
+          0,
+          0.1
+        ],
+        [
+          11925,
+          0.12
+        ],
+        [
+          48475,
+          0.22
+        ],
+        [
+          103350,
+          0.24
+        ],
+        [
+          197300,
+          0.32
+        ],
+        [
+          250525,
+          0.35
+        ],
+        [
+          626350,
+          0.37
+        ]
+      ]
+    },
+    "metrics": {
+      "tax_method": "approx:2025",
+      "params_source": "UNVERIFIED placeholder - replace with cited IRS/SSA values"
+    },
+    "git_revision": "f6bed35db12aecf401f4df19ebf1355c4b60adc2",
+    "python": "3.13.2"
+  },
+  {
+    "step": "02_build:shares",
+    "started_at": "2026-07-25T10:49:14+00:00",
+    "finished_at": "2026-07-25T10:49:15+00:00",
+    "inputs": {},
+    "outputs": {},
+    "params": {},
+    "metrics": {
+      "employment_share": 0.25204809366401015,
+      "wage_share": 0.2864756457695377,
+      "iit_share": 0.30081620434548395,
+      "oasdi_share": 0.2843557643637123,
+      "amplification_wage": 1.1365912021196274,
+      "amplification_iit": 1.1934873220921225,
+      "amplification_oasdi": 1.128180579468177
+    },
+    "git_revision": "f6bed35db12aecf401f4df19ebf1355c4b60adc2",
+    "python": "3.13.2"
+  },
+  {
+    "step": "02_build:write",
+    "started_at": "2026-07-25T10:49:15+00:00",
+    "finished_at": "2026-07-25T10:49:16+00:00",
+    "inputs": {},
+    "outputs": {
+      "/Users/timothymorvan/Desktop/ai-fiscal-exposure/output/tables/shares_by_contrast_group.csv": "sha256:7b59e87aff5cbf623c24bf3ffbfb1d95e0f5a8fee3d7bc82ec69e9f43e050a75",
+      "/Users/timothymorvan/Desktop/ai-fiscal-exposure/output/tables/shares_by_quartile.csv": "sha256:641a0814b928988724b902ef839da66e837ce16c3bb5581b5660ed656c33a0c3",
+      "/Users/timothymorvan/Desktop/ai-fiscal-exposure/output/tables/amplification_by_contrast_group.csv": "sha256:699b7b89fbc13ddb528f576258e6787493cb47b0eff77b4cf9259c45558ec378",
+      "/Users/timothymorvan/Desktop/ai-fiscal-exposure/output/tables/cutoff_sensitivity.csv": "sha256:39e3191b5fda4f07b00f7ec6898b014f2d351fdd1abac5201e20c964308e3ba9",
+      "/Users/timothymorvan/Desktop/ai-fiscal-exposure/output/figures/fig1_fiscal_exposure.png": "sha256:1a8aea3659b04c491071baeb02f68c46f80958cd3ccf8e7222f7eb4cb768d72e",
+      "/Users/timothymorvan/Desktop/ai-fiscal-exposure/output/figures/fig1_fiscal_exposure.pdf": "sha256:7bebd07806ba82a21304794031280db10cc9add9782bf4d226e2005cc23924c8",
+      "/Users/timothymorvan/Desktop/ai-fiscal-exposure/output/tables/results.json": "sha256:e752209821c7c3c3da3eb2015bdbb2193067e068d65dcbaf3915a49b7af2a9ed"
+    },
+    "params": {},
+    "metrics": {},
+    "git_revision": "f6bed35db12aecf401f4df19ebf1355c4b60adc2",
+    "python": "3.13.2"
+  },
+  {
+    "step": "02_build:exposure",
+    "started_at": "2026-07-25T10:50:21+00:00",
+    "finished_at": "2026-07-25T10:50:21+00:00",
+    "inputs": {},
+    "outputs": {},
+    "params": {},
+    "metrics": {
+      "n_occupations": 756,
+      "mean_exposure": 0.07697671957671957
+    },
+    "git_revision": "f6bed35db12aecf401f4df19ebf1355c4b60adc2",
+    "python": "3.13.2"
+  },
+  {
+    "step": "02_build:cps",
+    "started_at": "2026-07-25T10:50:21+00:00",
+    "finished_at": "2026-07-25T10:50:22+00:00",
+    "inputs": {},
+    "outputs": {},
+    "params": {},
+    "metrics": {
+      "rows_final": 125239,
+      "weighted_final": 299770984.71
+    },
+    "git_revision": "f6bed35db12aecf401f4df19ebf1355c4b60adc2",
+    "python": "3.13.2"
+  },
+  {
+    "step": "02_build:crosswalk",
+    "started_at": "2026-07-25T10:50:22+00:00",
+    "finished_at": "2026-07-25T10:50:22+00:00",
+    "inputs": {},
+    "outputs": {},
+    "params": {},
+    "metrics": {
+      "code_coverage": 0.9389312977099237,
+      "employment_coverage": 0.9444136108232087,
+      "n_mapped_cps_codes": 492
+    },
+    "git_revision": "f6bed35db12aecf401f4df19ebf1355c4b60adc2",
+    "python": "3.13.2"
+  },
+  {
+    "step": "02_build:tax",
+    "started_at": "2026-07-25T10:50:22+00:00",
+    "finished_at": "2026-07-25T10:50:22+00:00",
+    "inputs": {},
+    "outputs": {},
+    "params": {
+      "method": "approx",
+      "year": 2025,
+      "taxable_max": 176100.0,
+      "standard_deduction": 15000.0,
+      "source": "UNVERIFIED placeholder - replace with cited IRS/SSA values",
+      "brackets": [
+        [
+          0,
+          0.1
+        ],
+        [
+          11925,
+          0.12
+        ],
+        [
+          48475,
+          0.22
+        ],
+        [
+          103350,
+          0.24
+        ],
+        [
+          197300,
+          0.32
+        ],
+        [
+          250525,
+          0.35
+        ],
+        [
+          626350,
+          0.37
+        ]
+      ]
+    },
+    "metrics": {
+      "tax_method": "approx:2025",
+      "params_source": "UNVERIFIED placeholder - replace with cited IRS/SSA values"
+    },
+    "git_revision": "f6bed35db12aecf401f4df19ebf1355c4b60adc2",
+    "python": "3.13.2"
+  },
+  {
+    "step": "02_build:shares",
+    "started_at": "2026-07-25T10:50:22+00:00",
+    "finished_at": "2026-07-25T10:50:23+00:00",
+    "inputs": {},
+    "outputs": {},
+    "params": {},
+    "metrics": {
+      "employment_share": 0.25204809366401015,
+      "wage_share": 0.2864756457695377,
+      "iit_share": 0.30081620434548395,
+      "oasdi_share": 0.2843557643637123,
+      "amplification_wage": 1.1365912021196274,
+      "amplification_iit": 1.1934873220921225,
+      "amplification_oasdi": 1.128180579468177
+    },
+    "git_revision": "f6bed35db12aecf401f4df19ebf1355c4b60adc2",
+    "python": "3.13.2"
+  },
+  {
+    "step": "02_build:write",
+    "started_at": "2026-07-25T10:50:23+00:00",
+    "finished_at": "2026-07-25T10:50:24+00:00",
+    "inputs": {},
+    "outputs": {
+      "/Users/timothymorvan/Desktop/ai-fiscal-exposure/output/tables/shares_by_contrast_group.csv": "sha256:7b59e87aff5cbf623c24bf3ffbfb1d95e0f5a8fee3d7bc82ec69e9f43e050a75",
+      "/Users/timothymorvan/Desktop/ai-fiscal-exposure/output/tables/shares_by_quartile.csv": "sha256:641a0814b928988724b902ef839da66e837ce16c3bb5581b5660ed656c33a0c3",
+      "/Users/timothymorvan/Desktop/ai-fiscal-exposure/output/tables/amplification_by_contrast_group.csv": "sha256:699b7b89fbc13ddb528f576258e6787493cb47b0eff77b4cf9259c45558ec378",
+      "/Users/timothymorvan/Desktop/ai-fiscal-exposure/output/tables/cutoff_sensitivity.csv": "sha256:39e3191b5fda4f07b00f7ec6898b014f2d351fdd1abac5201e20c964308e3ba9",
+      "/Users/timothymorvan/Desktop/ai-fiscal-exposure/output/figures/fig1_fiscal_exposure.png": "sha256:1a8aea3659b04c491071baeb02f68c46f80958cd3ccf8e7222f7eb4cb768d72e",
+      "/Users/timothymorvan/Desktop/ai-fiscal-exposure/output/figures/fig1_fiscal_exposure.pdf": "sha256:81fb6ba1f95d52643c5a4d75ac70732fe3dccbe6943a67ea8cf4c1a62f2ebc90",
+      "/Users/timothymorvan/Desktop/ai-fiscal-exposure/output/tables/results.json": "sha256:e752209821c7c3c3da3eb2015bdbb2193067e068d65dcbaf3915a49b7af2a9ed"
+    },
+    "params": {},
+    "metrics": {},
+    "git_revision": "f6bed35db12aecf401f4df19ebf1355c4b60adc2",
+    "python": "3.13.2"
+  },
+  {
+    "step": "02_build:exposure",
+    "started_at": "2026-07-25T10:53:51+00:00",
+    "finished_at": "2026-07-25T10:53:51+00:00",
+    "inputs": {},
+    "outputs": {},
+    "params": {},
+    "metrics": {
+      "n_occupations": 756,
+      "mean_exposure": 0.07697671957671957
+    },
+    "git_revision": "f6bed35db12aecf401f4df19ebf1355c4b60adc2",
+    "python": "3.13.2"
+  },
+  {
+    "step": "02_build:cps",
+    "started_at": "2026-07-25T10:53:51+00:00",
+    "finished_at": "2026-07-25T10:53:52+00:00",
+    "inputs": {},
+    "outputs": {},
+    "params": {},
+    "metrics": {
+      "rows_final": 125239,
+      "weighted_final": 299770984.71
+    },
+    "git_revision": "f6bed35db12aecf401f4df19ebf1355c4b60adc2",
+    "python": "3.13.2"
+  },
+  {
+    "step": "02_build:crosswalk",
+    "started_at": "2026-07-25T10:53:52+00:00",
+    "finished_at": "2026-07-25T10:53:52+00:00",
+    "inputs": {},
+    "outputs": {},
+    "params": {},
+    "metrics": {
+      "code_coverage": 0.9389312977099237,
+      "employment_coverage": 0.9444136108232087,
+      "n_mapped_cps_codes": 492
+    },
+    "git_revision": "f6bed35db12aecf401f4df19ebf1355c4b60adc2",
+    "python": "3.13.2"
+  },
+  {
+    "step": "02_build:tax",
+    "started_at": "2026-07-25T10:53:52+00:00",
+    "finished_at": "2026-07-25T10:53:52+00:00",
+    "inputs": {},
+    "outputs": {},
+    "params": {
+      "method": "approx",
+      "year": 2025,
+      "taxable_max": 176100.0,
+      "standard_deduction": 15000.0,
+      "source": "UNVERIFIED placeholder - replace with cited IRS/SSA values",
+      "brackets": [
+        [
+          0,
+          0.1
+        ],
+        [
+          11925,
+          0.12
+        ],
+        [
+          48475,
+          0.22
+        ],
+        [
+          103350,
+          0.24
+        ],
+        [
+          197300,
+          0.32
+        ],
+        [
+          250525,
+          0.35
+        ],
+        [
+          626350,
+          0.37
+        ]
+      ]
+    },
+    "metrics": {
+      "tax_method": "approx:2025",
+      "params_source": "UNVERIFIED placeholder - replace with cited IRS/SSA values"
+    },
+    "git_revision": "f6bed35db12aecf401f4df19ebf1355c4b60adc2",
+    "python": "3.13.2"
+  },
+  {
+    "step": "02_build:shares",
+    "started_at": "2026-07-25T10:53:52+00:00",
+    "finished_at": "2026-07-25T10:53:53+00:00",
+    "inputs": {},
+    "outputs": {},
+    "params": {},
+    "metrics": {
+      "employment_share": 0.25204809366401015,
+      "wage_share": 0.2864756457695377,
+      "iit_share": 0.30081620434548395,
+      "oasdi_share": 0.2843557643637123,
+      "amplification_wage": 1.1365912021196274,
+      "amplification_iit": 1.1934873220921225,
+      "amplification_oasdi": 1.128180579468177
+    },
+    "git_revision": "f6bed35db12aecf401f4df19ebf1355c4b60adc2",
+    "python": "3.13.2"
+  },
+  {
+    "step": "02_build:write",
+    "started_at": "2026-07-25T10:53:53+00:00",
+    "finished_at": "2026-07-25T10:53:55+00:00",
+    "inputs": {},
+    "outputs": {
+      "/Users/timothymorvan/Desktop/ai-fiscal-exposure/output/tables/shares_by_contrast_group.csv": "sha256:7b59e87aff5cbf623c24bf3ffbfb1d95e0f5a8fee3d7bc82ec69e9f43e050a75",
+      "/Users/timothymorvan/Desktop/ai-fiscal-exposure/output/tables/shares_by_quartile.csv": "sha256:641a0814b928988724b902ef839da66e837ce16c3bb5581b5660ed656c33a0c3",
+      "/Users/timothymorvan/Desktop/ai-fiscal-exposure/output/tables/amplification_by_contrast_group.csv": "sha256:699b7b89fbc13ddb528f576258e6787493cb47b0eff77b4cf9259c45558ec378",
+      "/Users/timothymorvan/Desktop/ai-fiscal-exposure/output/tables/cutoff_sensitivity.csv": "sha256:39e3191b5fda4f07b00f7ec6898b014f2d351fdd1abac5201e20c964308e3ba9",
+      "/Users/timothymorvan/Desktop/ai-fiscal-exposure/output/figures/fig1_fiscal_exposure.png": "sha256:49878ab4943b2b073e25242b9d8ff6af666d826ec87b45169355a447a3b28df4",
+      "/Users/timothymorvan/Desktop/ai-fiscal-exposure/output/figures/fig1_fiscal_exposure.pdf": "sha256:678279fc0d7299de789464f3189b7ce6b0a0c2fc4fc5709d453b09e577b44075",
+      "/Users/timothymorvan/Desktop/ai-fiscal-exposure/output/tables/results.json": "sha256:e752209821c7c3c3da3eb2015bdbb2193067e068d65dcbaf3915a49b7af2a9ed"
+    },
+    "params": {},
+    "metrics": {},
+    "git_revision": "f6bed35db12aecf401f4df19ebf1355c4b60adc2",
+    "python": "3.13.2"
+  },
+  {
+    "step": "02_build:exposure",
+    "started_at": "2026-07-25T10:57:19+00:00",
+    "finished_at": "2026-07-25T10:57:20+00:00",
+    "inputs": {},
+    "outputs": {},
+    "params": {},
+    "metrics": {
+      "n_occupations": 756,
+      "mean_exposure": 0.07697671957671957
+    },
+    "git_revision": "f6bed35db12aecf401f4df19ebf1355c4b60adc2",
+    "python": "3.13.2"
+  },
+  {
+    "step": "02_build:cps",
+    "started_at": "2026-07-25T10:57:20+00:00",
+    "finished_at": "2026-07-25T10:57:21+00:00",
+    "inputs": {},
+    "outputs": {},
+    "params": {},
+    "metrics": {
+      "rows_final": 125239,
+      "weighted_final": 299770984.71
+    },
+    "git_revision": "f6bed35db12aecf401f4df19ebf1355c4b60adc2",
+    "python": "3.13.2"
+  },
+  {
+    "step": "02_build:crosswalk",
+    "started_at": "2026-07-25T10:57:21+00:00",
+    "finished_at": "2026-07-25T10:57:21+00:00",
+    "inputs": {},
+    "outputs": {},
+    "params": {},
+    "metrics": {
+      "code_coverage": 0.9389312977099237,
+      "employment_coverage": 0.9444136108232087,
+      "n_mapped_cps_codes": 492
+    },
+    "git_revision": "f6bed35db12aecf401f4df19ebf1355c4b60adc2",
+    "python": "3.13.2"
+  },
+  {
+    "step": "02_build:tax",
+    "started_at": "2026-07-25T10:57:21+00:00",
+    "finished_at": "2026-07-25T10:57:21+00:00",
+    "inputs": {},
+    "outputs": {},
+    "params": {
+      "method": "approx",
+      "year": 2025,
+      "taxable_max": 176100.0,
+      "standard_deduction": 15000.0,
+      "source": "UNVERIFIED placeholder - replace with cited IRS/SSA values",
+      "brackets": [
+        [
+          0,
+          0.1
+        ],
+        [
+          11925,
+          0.12
+        ],
+        [
+          48475,
+          0.22
+        ],
+        [
+          103350,
+          0.24
+        ],
+        [
+          197300,
+          0.32
+        ],
+        [
+          250525,
+          0.35
+        ],
+        [
+          626350,
+          0.37
+        ]
+      ]
+    },
+    "metrics": {
+      "tax_method": "approx:2025",
+      "params_source": "UNVERIFIED placeholder - replace with cited IRS/SSA values"
+    },
+    "git_revision": "f6bed35db12aecf401f4df19ebf1355c4b60adc2",
+    "python": "3.13.2"
+  },
+  {
+    "step": "02_build:shares",
+    "started_at": "2026-07-25T10:57:21+00:00",
+    "finished_at": "2026-07-25T10:57:21+00:00",
+    "inputs": {},
+    "outputs": {},
+    "params": {},
+    "metrics": {
+      "employment_share": 0.25204809366401015,
+      "wage_share": 0.2864756457695377,
+      "iit_share": 0.30081620434548395,
+      "oasdi_share": 0.2843557643637123,
+      "amplification_wage": 1.1365912021196274,
+      "amplification_iit": 1.1934873220921225,
+      "amplification_oasdi": 1.128180579468177
+    },
+    "git_revision": "f6bed35db12aecf401f4df19ebf1355c4b60adc2",
+    "python": "3.13.2"
+  },
+  {
+    "step": "02_build:write",
+    "started_at": "2026-07-25T10:57:21+00:00",
+    "finished_at": "2026-07-25T10:57:24+00:00",
+    "inputs": {},
+    "outputs": {
+      "/Users/timothymorvan/Desktop/ai-fiscal-exposure/output/tables/shares_by_contrast_group.csv": "sha256:7b59e87aff5cbf623c24bf3ffbfb1d95e0f5a8fee3d7bc82ec69e9f43e050a75",
+      "/Users/timothymorvan/Desktop/ai-fiscal-exposure/output/tables/shares_by_quartile.csv": "sha256:641a0814b928988724b902ef839da66e837ce16c3bb5581b5660ed656c33a0c3",
+      "/Users/timothymorvan/Desktop/ai-fiscal-exposure/output/tables/amplification_by_contrast_group.csv": "sha256:699b7b89fbc13ddb528f576258e6787493cb47b0eff77b4cf9259c45558ec378",
+      "/Users/timothymorvan/Desktop/ai-fiscal-exposure/output/tables/cutoff_sensitivity.csv": "sha256:39e3191b5fda4f07b00f7ec6898b014f2d351fdd1abac5201e20c964308e3ba9",
+      "/Users/timothymorvan/Desktop/ai-fiscal-exposure/output/figures/fig1_fiscal_exposure.png": "sha256:5f0b2669b0e3f4732f39ac4922739733db913a30df225fae7f421834560387cf",
+      "/Users/timothymorvan/Desktop/ai-fiscal-exposure/output/figures/fig1_fiscal_exposure.pdf": "sha256:a4373daffbf0cc617ef695dc223c5689230c95363bdd623dc7d1b2dbe46628b9",
+      "/Users/timothymorvan/Desktop/ai-fiscal-exposure/output/tables/results.json": "sha256:e752209821c7c3c3da3eb2015bdbb2193067e068d65dcbaf3915a49b7af2a9ed"
+    },
+    "params": {},
+    "metrics": {},
+    "git_revision": "f6bed35db12aecf401f4df19ebf1355c4b60adc2",
+    "python": "3.13.2"
   }
 ]

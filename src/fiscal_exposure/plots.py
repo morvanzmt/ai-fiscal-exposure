@@ -111,17 +111,19 @@ def panel_a_headline(
 def panel_b_gradient(
     shares: pd.DataFrame, *, ax: plt.Axes | None = None, provisional: bool = False
 ) -> plt.Axes:
-    """The same series across all exposure groups."""
+    """Composition of each fiscal base across AI exposure groups."""
     if ax is None:
-        _, ax = plt.subplots(figsize=(7.2, 4.0))
+        _, ax = plt.subplots(figsize=(7.2, 4.2))
+
     groups = list(shares.index)
     labels = [c for c in shares.columns if shares[c].notna().any()]
+
     x = np.arange(len(groups))
-    width = 0.8 / max(len(labels), 1)
+    width = 0.8 / len(labels)
 
     for k, lbl in enumerate(labels):
         ax.bar(
-            x + k * width - 0.4 + width / 2,
+            x + (k - (len(labels) - 1) / 2) * width,
             shares[lbl].to_numpy(dtype=float),
             width=width,
             label=lbl,
@@ -132,13 +134,24 @@ def panel_b_gradient(
     ax.set_xticklabels(groups)
     ax.set_ylabel("Share of national total")
     ax.set_xlabel("AI exposure group")
-    ax.set_title("Base composition across the exposure gradient")
-    ax.legend(ncol=2, fontsize=8.5, loc="upper left")
+    ax.set_title("Base composition across the exposure gradient", pad=18)
+
     _pct(ax)
+
+    ax.legend(
+        loc="upper center",
+        bbox_to_anchor=(0.5, 1.08),
+        ncol=2,
+        fontsize=8.5,
+        columnspacing=1.8,
+        handlelength=1.8,
+        borderaxespad=0.0,
+    )
+
     if provisional:
         _watermark(ax)
-    return ax
 
+    return ax
 
 def panel_c_sensitivity(
     sens: pd.DataFrame, *, ax: plt.Axes | None = None, provisional: bool = False
@@ -206,7 +219,8 @@ def figure_main(
 
     if subtitle:
         fig.text(0.5, -0.02, subtitle, ha="center", fontsize=8.5, color=MUTED)
-    fig.tight_layout()
+    # fig.tight_layout()
+    fig.tight_layout(rect=[0, 0, 1, 0.90])
 
     outdir = Path(outdir)
     outdir.mkdir(parents=True, exist_ok=True)
