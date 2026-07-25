@@ -5,24 +5,52 @@ on:
     branches: [main]
   pull_request:
 
+env:
+  # Headless runners have no display; force a non-interactive matplotlib backend
+  # so figure generation in the end-to-end step cannot block.
+  MPLBACKEND: Agg
+
 jobs:
   test:
     runs-on: ubuntu-latest
     strategy:
+      fail-fast: false
       matrix:
         python-version: ["3.11", "3.12"]
+
     steps:
       - uses: actions/checkout@v4
-      - uses: astral-sh/setup-uv@v3
-      - name: Set up Python
+
+      - name: Install uv
+        uses: astral-sh/setup-uv@v3
+        with:
+          enable-cache: true
+
+      - name: Install Python ${{ matrix.python-version }}
         run: uv python install ${{ matrix.python-version }}
-      - name: Install
-        run: uv pip install --system -e ".[dev]"
+
+      # A virtual environment is required, not optional: the runner's system
+      # Python is PEP 668 externally managed and refuses installs.
+      - name: Create virtual environment
+        run: uv venv --python ${{ matrix.python-version }}
+
+      - name: Install package with dev extras
+        run: uv pip install -e ".[dev]"
+
+      # Explicit .venv paths rather than `uv run`, which in a directory
+      # containing pyproject.toml may attempt its own project sync and fight
+      # the editable install above.
       - name: Lint
-        run: ruff check src scripts tests
+        run: .venv/bin/ruff check src scripts tests
+
       - name: Test
-        run: pytest --cov --cov-report=term-missing
+        run: .venv/bin/pytest -q --cov --cov-report=term-missing
+
       - name: End-to-end on synthetic fixtures
         run: |
-          python scripts/01_fetch.py --synthetic
-          python scripts/02_build_dataset.py --config config/config.synthetic.yaml
+          .venv/bin/python scripts/01_fetch.py --synthetic
+          .venv/bin/python scripts/02_build_dataset.py \
+            --config config/config.synthetic.yaml
+
+      - name: Check the figure was actually written
+        run: test -s output/figures/fig1_fiscal_exposure.png
