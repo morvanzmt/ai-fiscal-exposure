@@ -36,8 +36,6 @@ cps:
   min_age: 16
   max_age: 99
   require_positive_wage: true
-  employed_only: false   # synthetic fixture has no empstat column
-  occ_width: 4
 
 analysis:
   n_quantiles: 4

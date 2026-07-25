@@ -1,39 +1,49 @@
 {
-  "provisional": true,
+  "provisional": false,
   "headline": {
-    "employment_share": 0.26035240026664186,
-    "wage_share": 0.3175382149439379,
-    "iit_share": 0.35187521058196514,
-    "oasdi_share": 0.30706773275894345,
-    "amplification_wage": 1.2196477336822276,
-    "amplification_iit": 1.351534344302528,
-    "amplification_oasdi": 1.179431157325447
+    "employment_share": 0.25204809366401015,
+    "wage_share": 0.2864756457695377,
+    "iit_share": 0.30081620434548395,
+    "oasdi_share": 0.2843557643637123,
+    "amplification_wage": 1.1365912021196274,
+    "amplification_iit": 1.1934873220921225,
+    "amplification_oasdi": 1.128180579468177
   },
-  "crosswalk_code_coverage": 1.0,
-  "crosswalk_employment_coverage": 1.0,
-  "weighted_exposure_match_rate": 1.0,
-  "bin_report": "4 bins, edges [0.0, 0.0317, 0.1666, 0.3881, 0.9148]; zero-exposure employment share 20.8%",
+  "crosswalk_code_coverage": 0.9389312977099237,
+  "crosswalk_employment_coverage": 0.9444136108232087,
+  "weighted_exposure_match_rate": 0.944413610823209,
+  "bin_report": "4 bins, edges [0.0, 0.0, 0.0591, 0.1846, 0.7451]; zero-exposure employment share 28.9% [WARNING: a bin edge falls inside a block of tied scores]",
   "tax_method": "approx:2025",
   "universe": {
-    "rows_initial": 60000,
-    "weighted_initial": 102317508.28,
-    "rows_final": 60000,
-    "weighted_final": 102317508.28,
+    "rows_initial": 230282,
+    "weighted_initial": 551454682.44,
+    "rows_final": 125239,
+    "weighted_final": 299770984.71,
     "steps": {
       "age": {
-        "rows_before": 60000,
-        "rows_after": 60000,
-        "weighted_after": 102317508.28
+        "rows_before": 230282,
+        "rows_after": 225991,
+        "weighted_after": 542807596.27
+      },
+      "employed": {
+        "rows_before": 225991,
+        "rows_after": 135610,
+        "weighted_after": 324346408.24
+      },
+      "occupation_in_universe": {
+        "rows_before": 135610,
+        "rows_after": 135610,
+        "weighted_after": 324346408.24
       },
       "positive_wage": {
-        "rows_before": 60000,
-        "rows_after": 60000,
-        "weighted_after": 102317508.28
+        "rows_before": 135610,
+        "rows_after": 125239,
+        "weighted_after": 299770984.71
       },
       "positive_weight": {
-        "rows_before": 60000,
-        "rows_after": 60000,
-        "weighted_after": 102317508.28
+        "rows_before": 125239,
+        "rows_after": 125239,
+        "weighted_after": 299770984.71
       }
     }
   }

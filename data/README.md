@@ -125,31 +125,67 @@ waiting. Use if IPUMS stalls.
 
 ---
 
-## 3. Crosswalk — O\*NET-SOC to CPS occupation
+## 3. Crosswalk — SOC 2018 to Census occupation
 
-Use the Eckhardt and Goldschlag (2025) crosswalk from the Economic Innovation
-Group, which is the same one Massenkoff and McCrory used to match O\*NET-SOC to
-`occ1990` codes in the CPS. Holding the occupation mapping identical to theirs
-means any divergence in results is attributable to the fiscal layer rather than
-to plumbing.
+**The AEI publishes exposure on 6-digit SOC 2018 codes** (`11-1011`,
+`11-1021`), not on 8-digit O\*NET-SOC. The CPS uses Census occupation codes. So
+the join is SOC 2018 to Census 2018, and the authoritative source is the Census
+Bureau's own code list.
 
-- <https://eig.org/ai-and-jobs-the-final-word/>
+```bash
+python scripts/01c_build_crosswalk.py
+```
 
-Place under `data/raw/crosswalk/`.
+That downloads the workbook, parses it, and writes
+`data/raw/crosswalk/soc2018_to_census2018.csv`.
 
-Fallbacks:
-- O\*NET taxonomy and crosswalks: <https://www.onetcenter.org/crosswalks.html>
-- BLS SOC crosswalks: <https://www.bls.gov/soc/2018/crosswalks.htm>
-- IPUMS occupation transitions: <https://cps.ipums.org/cps/occ_transition.shtml>
+If the download is blocked, fetch it by hand:
 
-**Aggregation.** O\*NET-SOC is finer than CPS occupation, so the mapping is
-many-to-one. Exposure is aggregated as an employment-weighted mean using BLS OES
-employment (<https://www.bls.gov/oes/tables.htm>), with the unweighted mean
-retained as a robustness variant. A simple mean would weight a tiny occupation
-equally with a huge one, biasing exposure for exactly the large categories that
-carry most of the tax base.
+1. Go to <https://www.census.gov/topics/employment/industry-occupation/guidance/code-lists.html>
+2. Under **Occupation**, open *2018 Census Occupation Code Lists (Derived from
+   the 2018 SOC)*
+3. Download `2018-occupation-code-list-and-crosswalk.xlsx` into
+   `data/raw/crosswalk/`
+4. `python scripts/01c_build_crosswalk.py --xlsx data/raw/crosswalk/2018-occupation-code-list-and-crosswalk.xlsx`
 
----
+Direct link, if it still resolves:
+<https://www2.census.gov/programs-surveys/demo/guidance/industry-occupation/2018-occupation-code-list-and-crosswalk.xlsx>
+
+If the parser cannot find the header row, run `--inspect` to dump the sheet
+layout and pass `--header-row` explicitly.
+
+### On EIG
+
+Massenkoff and McCrory cite Eckhardt and Goldschlag (2025) at EIG for their
+crosswalk, and it is natural to look for a file there. **EIG does not ship
+one.** Their repository (<https://github.com/EIG-Research/AI-unemployment>)
+directs you to a Google Drive for raw inputs, and its README lists among them a
+"Census SOC to Census occupation code crosswalk, downloaded from Census". Their
+appendix describes translating SOC codes onto Census 2018 codes using the
+Census many-to-one crosswalk. So the Census file above *is* the EIG crosswalk;
+they simply did not redistribute it.
+
+### Three quirks the parser handles
+
+Each of these silently corrupts the merge if ignored:
+
+1. The header sits several rows below a title block.
+2. One Census code can list several SOC codes in a single comma-separated cell.
+3. Some entries use wildcards such as `11-30XX` for a whole SOC subgroup, which
+   are expanded against the SOC codes actually present in the exposure file.
+
+### Which CPS occupation variable
+
+`OCC` is the contemporary Census code, on the 2018 basis for ASEC 2024 and 2025,
+which is what this crosswalk targets. The pipeline reports weighted match rate;
+if it comes back poor, switch `cps.occ_col` to `occ2010` and use the 2010 Census
+code list instead. Do not skip that check: a bad match shows up as low coverage,
+not as an error.
+
+Optional refinement: add BLS OES employment
+(<https://www.bls.gov/oes/tables.htm>) as `crosswalk.weight_col` so that where
+several SOC codes collapse into one Census code, exposure is averaged weighted
+by employment rather than equally.
 
 ## 4. Tax parameters
 

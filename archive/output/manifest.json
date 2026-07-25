@@ -1,8 +1,8 @@
 [
   {
     "step": "01_fetch:synthetic",
-    "started_at": "2026-07-25T09:44:40+00:00",
-    "finished_at": "2026-07-25T09:44:40+00:00",
+    "started_at": "2026-07-24T22:33:54+00:00",
+    "finished_at": "2026-07-24T22:33:54+00:00",
     "inputs": {},
     "outputs": {
       "data/raw/synthetic_exposure.csv": "sha256:cb7b5bd79fcb4c025cc7b3c6973521b242cd2cf5152e8ada4b216b6516f1179b",
@@ -20,8 +20,8 @@
   },
   {
     "step": "02_build:exposure",
-    "started_at": "2026-07-25T09:44:41+00:00",
-    "finished_at": "2026-07-25T09:44:41+00:00",
+    "started_at": "2026-07-24T22:33:55+00:00",
+    "finished_at": "2026-07-24T22:33:55+00:00",
     "inputs": {},
     "outputs": {},
     "params": {},
@@ -34,8 +34,8 @@
   },
   {
     "step": "02_build:cps",
-    "started_at": "2026-07-25T09:44:41+00:00",
-    "finished_at": "2026-07-25T09:44:42+00:00",
+    "started_at": "2026-07-24T22:33:55+00:00",
+    "finished_at": "2026-07-24T22:33:55+00:00",
     "inputs": {},
     "outputs": {},
     "params": {},
@@ -48,8 +48,8 @@
   },
   {
     "step": "02_build:crosswalk",
-    "started_at": "2026-07-25T09:44:42+00:00",
-    "finished_at": "2026-07-25T09:44:42+00:00",
+    "started_at": "2026-07-24T22:33:55+00:00",
+    "finished_at": "2026-07-24T22:33:55+00:00",
     "inputs": {},
     "outputs": {},
     "params": {},
@@ -63,8 +63,8 @@
   },
   {
     "step": "02_build:tax",
-    "started_at": "2026-07-25T09:44:42+00:00",
-    "finished_at": "2026-07-25T09:44:42+00:00",
+    "started_at": "2026-07-24T22:33:55+00:00",
+    "finished_at": "2026-07-24T22:33:55+00:00",
     "inputs": {},
     "outputs": {},
     "params": {
@@ -113,8 +113,8 @@
   },
   {
     "step": "02_build:shares",
-    "started_at": "2026-07-25T09:44:42+00:00",
-    "finished_at": "2026-07-25T09:44:42+00:00",
+    "started_at": "2026-07-24T22:33:55+00:00",
+    "finished_at": "2026-07-24T22:33:56+00:00",
     "inputs": {},
     "outputs": {},
     "params": {},
@@ -132,8 +132,8 @@
   },
   {
     "step": "02_build:write",
-    "started_at": "2026-07-25T09:44:42+00:00",
-    "finished_at": "2026-07-25T09:44:45+00:00",
+    "started_at": "2026-07-24T22:33:56+00:00",
+    "finished_at": "2026-07-24T22:33:58+00:00",
     "inputs": {},
     "outputs": {
       "/home/claude/ai-fiscal-exposure/output/tables/shares_by_contrast_group.csv": "sha256:4b1a82fee446cd400efe37d002f56e3bfbcab73cc70422041967d5b40218ab2e",
@@ -141,8 +141,8 @@
       "/home/claude/ai-fiscal-exposure/output/tables/amplification_by_contrast_group.csv": "sha256:119b82dca95387242a837ee89472794c9cb599b4c45af74842170755f1106280",
       "/home/claude/ai-fiscal-exposure/output/tables/cutoff_sensitivity.csv": "sha256:1826bb4403a3052fc77ce546cbc245ba8a98a27564425fcef3a89fa053cf6d22",
       "/home/claude/ai-fiscal-exposure/output/figures/fig1_fiscal_exposure.png": "sha256:dda2a57f3db9973c27194eba0e82b238f29ed4a320a5e88dcb1ef5a433ebbef2",
-      "/home/claude/ai-fiscal-exposure/output/figures/fig1_fiscal_exposure.pdf": "sha256:c65d4ada0eb0de70c809dde6dee97e71866f2029aaba561a456726ef05fde3fb",
-      "/home/claude/ai-fiscal-exposure/output/tables/results.json": "sha256:076d0b63408fca7f18f0969226a882b9c0c7a88f102c9511cbf6d47d8b044a09"
+      "/home/claude/ai-fiscal-exposure/output/figures/fig1_fiscal_exposure.pdf": "sha256:38df7ba96cecfbbe737b0cc52b8590bed9a925434e5b0d9abfc77f9e59d1022f",
+      "/home/claude/ai-fiscal-exposure/output/tables/results.json": "sha256:52de063805fd78efa38452db88023b8236a3f0339e518c7b2f067cd2ec98c534"
     },
     "params": {},
     "metrics": {},
@@ -150,96 +150,71 @@
     "python": "3.12.3"
   },
   {
-    "step": "01c_crosswalk",
-    "started_at": "2026-07-25T09:50:07+00:00",
-    "finished_at": "2026-07-25T09:50:08+00:00",
-    "inputs": {
-      "data/raw/crosswalk/2018-occupation-code-list-and-crosswalk.xlsx": "sha256:fca2818d691c32777a4cd733a9ab77c8c5bd47adcacd7ac3aa149bebd45b5f7f"
-    },
+    "step": "01_fetch:synthetic",
+    "started_at": "2026-07-24T23:04:20+00:00",
+    "finished_at": "2026-07-24T23:04:20+00:00",
+    "inputs": {},
     "outputs": {
-      "data/raw/crosswalk/soc2018_to_census2018.csv": "sha256:00ba1c56c6ddae2083684c13d48ffcaa51074e01a279861a98a810dc539c0ba8"
+      "data/raw/synthetic_exposure.csv": "sha256:cb7b5bd79fcb4c025cc7b3c6973521b242cd2cf5152e8ada4b216b6516f1179b",
+      "data/raw/synthetic_crosswalk.csv": "sha256:207025ef90aa4329d1cdbdd103a6f37cea1b440375ae745b6fd8717686ce2d89",
+      "data/raw/synthetic_cps_asec.csv": "sha256:e5b6d184ac54310b8764088e936fc562855c7c16b41c76639dfe24c66b9fab57"
     },
     "params": {
-      "source": "https://www2.census.gov/programs-surveys/demo/guidance/industry-occupation/2018-occupation-code-list-and-crosswalk.xlsx"
+      "seed": 20260726
     },
     "metrics": {
-      "n_pairs": 762,
-      "n_soc_codes": 645,
-      "n_census_codes": 567,
-      "wildcards_expanded": 195
-    },
-    "git_revision": "3f27a87557d07f3c7aacdf37c0cde5d7c5937844",
-    "python": "3.13.2"
-  },
-  {
-    "step": "01c_crosswalk",
-    "started_at": "2026-07-25T10:02:03+00:00",
-    "finished_at": "2026-07-25T10:02:03+00:00",
-    "inputs": {
-      "data/raw/crosswalk/2018-occupation-code-list-and-crosswalk.xlsx": "sha256:fca2818d691c32777a4cd733a9ab77c8c5bd47adcacd7ac3aa149bebd45b5f7f"
-    },
-    "outputs": {
-      "data/raw/crosswalk/soc2018_to_census2018.csv": "sha256:26b9051ff587312650c1f9a5f65b7ddcef91881db67b1609a60c1e21ce7b949c"
-    },
-    "params": {
-      "source": "https://www2.census.gov/programs-surveys/demo/guidance/industry-occupation/2018-occupation-code-list-and-crosswalk.xlsx"
-    },
-    "metrics": {
-      "n_pairs": 897,
-      "n_soc_codes": 751,
-      "n_census_codes": 528,
-      "wildcards_expanded": 37
+      "files": 3
     },
     "git_revision": "3f27a87557d07f3c7aacdf37c0cde5d7c5937844",
     "python": "3.13.2"
   },
   {
     "step": "02_build:exposure",
-    "started_at": "2026-07-25T10:03:56+00:00",
-    "finished_at": "2026-07-25T10:03:56+00:00",
+    "started_at": "2026-07-24T23:04:57+00:00",
+    "finished_at": "2026-07-24T23:04:57+00:00",
     "inputs": {},
     "outputs": {},
     "params": {},
     "metrics": {
-      "n_occupations": 756,
-      "mean_exposure": 0.07697671957671957
+      "n_occupations": 420,
+      "mean_exposure": 0.24752833333333332
     },
     "git_revision": "3f27a87557d07f3c7aacdf37c0cde5d7c5937844",
     "python": "3.13.2"
   },
   {
     "step": "02_build:cps",
-    "started_at": "2026-07-25T10:03:56+00:00",
-    "finished_at": "2026-07-25T10:03:57+00:00",
+    "started_at": "2026-07-24T23:04:57+00:00",
+    "finished_at": "2026-07-24T23:04:57+00:00",
     "inputs": {},
     "outputs": {},
     "params": {},
     "metrics": {
-      "rows_final": 125239,
-      "weighted_final": 299770984.71
+      "rows_final": 60000,
+      "weighted_final": 102317508.28
     },
     "git_revision": "3f27a87557d07f3c7aacdf37c0cde5d7c5937844",
     "python": "3.13.2"
   },
   {
     "step": "02_build:crosswalk",
-    "started_at": "2026-07-25T10:03:57+00:00",
-    "finished_at": "2026-07-25T10:03:57+00:00",
+    "started_at": "2026-07-24T23:04:57+00:00",
+    "finished_at": "2026-07-24T23:04:57+00:00",
     "inputs": {},
     "outputs": {},
     "params": {},
     "metrics": {
-      "code_coverage": 0.9389312977099237,
-      "employment_coverage": 0.9444136108232087,
-      "n_mapped_cps_codes": 492
+      "code_coverage": 1.0,
+      "employment_coverage": 1.0,
+      "n_mapped_cps_codes": 207
     },
     "git_revision": "3f27a87557d07f3c7aacdf37c0cde5d7c5937844",
     "python": "3.13.2"
   },
   {
     "step": "02_build:tax",
-    "started_at": "2026-07-25T10:03:57+00:00",
-    "finished_at": "2026-07-25T10:03:57+00:00",
+    "started_at": "2026-07-24T23:04:57+00:00",
+    "finished_at": "2026-07-24T23:04:57+00:00",
     "inputs": {},
     "outputs": {},
     "params": {
@@ -247,7 +222,7 @@
       "year": 2025,
       "taxable_max": 176100.0,
       "standard_deduction": 15000.0,
-      "source": "UNVERIFIED placeholder - replace with cited IRS/SSA values",
+      "source": "PLACEHOLDER - verify against IRS Rev. Proc. and SSA CBB before publishing",
       "brackets": [
         [
           0,
@@ -281,46 +256,102 @@
     },
     "metrics": {
       "tax_method": "approx:2025",
-      "params_source": "UNVERIFIED placeholder - replace with cited IRS/SSA values"
+      "params_source": "PLACEHOLDER - verify against IRS Rev. Proc. and SSA CBB before publishing"
     },
     "git_revision": "3f27a87557d07f3c7aacdf37c0cde5d7c5937844",
     "python": "3.13.2"
   },
   {
     "step": "02_build:shares",
-    "started_at": "2026-07-25T10:03:57+00:00",
-    "finished_at": "2026-07-25T10:03:57+00:00",
+    "started_at": "2026-07-24T23:04:57+00:00",
+    "finished_at": "2026-07-24T23:04:57+00:00",
     "inputs": {},
     "outputs": {},
     "params": {},
     "metrics": {
-      "employment_share": 0.25204809366401015,
-      "wage_share": 0.2864756457695377,
-      "iit_share": 0.30081620434548395,
-      "oasdi_share": 0.2843557643637123,
-      "amplification_wage": 1.1365912021196274,
-      "amplification_iit": 1.1934873220921225,
-      "amplification_oasdi": 1.128180579468177
+      "employment_share": 0.26035240026664186,
+      "wage_share": 0.3175382149439379,
+      "iit_share": 0.35187521058196514,
+      "oasdi_share": 0.30706773275894345,
+      "amplification_wage": 1.2196477336822276,
+      "amplification_iit": 1.351534344302528,
+      "amplification_oasdi": 1.179431157325447
     },
     "git_revision": "3f27a87557d07f3c7aacdf37c0cde5d7c5937844",
     "python": "3.13.2"
   },
   {
     "step": "02_build:write",
-    "started_at": "2026-07-25T10:03:57+00:00",
-    "finished_at": "2026-07-25T10:03:59+00:00",
+    "started_at": "2026-07-24T23:04:57+00:00",
+    "finished_at": "2026-07-24T23:05:00+00:00",
     "inputs": {},
     "outputs": {
-      "/Users/timothymorvan/Desktop/ai-fiscal-exposure/output/tables/shares_by_contrast_group.csv": "sha256:7b59e87aff5cbf623c24bf3ffbfb1d95e0f5a8fee3d7bc82ec69e9f43e050a75",
-      "/Users/timothymorvan/Desktop/ai-fiscal-exposure/output/tables/shares_by_quartile.csv": "sha256:641a0814b928988724b902ef839da66e837ce16c3bb5581b5660ed656c33a0c3",
-      "/Users/timothymorvan/Desktop/ai-fiscal-exposure/output/tables/amplification_by_contrast_group.csv": "sha256:699b7b89fbc13ddb528f576258e6787493cb47b0eff77b4cf9259c45558ec378",
-      "/Users/timothymorvan/Desktop/ai-fiscal-exposure/output/tables/cutoff_sensitivity.csv": "sha256:39e3191b5fda4f07b00f7ec6898b014f2d351fdd1abac5201e20c964308e3ba9",
-      "/Users/timothymorvan/Desktop/ai-fiscal-exposure/output/figures/fig1_fiscal_exposure.png": "sha256:95cd6d1a676d64a6415f2e2ab6213f78945f56e6d7863ecb11987274308ed0ae",
-      "/Users/timothymorvan/Desktop/ai-fiscal-exposure/output/figures/fig1_fiscal_exposure.pdf": "sha256:37c6dfe4ff7cd8b0f25e21d8a2bc4c1f7db74dceffe243fc0a11156ed9b12eab",
-      "/Users/timothymorvan/Desktop/ai-fiscal-exposure/output/tables/results.json": "sha256:e752209821c7c3c3da3eb2015bdbb2193067e068d65dcbaf3915a49b7af2a9ed"
+      "/Users/timothymorvan/Desktop/ai-fiscal-exposure/output/tables/shares_by_contrast_group.csv": "sha256:4b1a82fee446cd400efe37d002f56e3bfbcab73cc70422041967d5b40218ab2e",
+      "/Users/timothymorvan/Desktop/ai-fiscal-exposure/output/tables/shares_by_quartile.csv": "sha256:3c695aea0a5d89f95c179b65a005feb0c6ab3a1e42aadba3ed4b5731f2586428",
+      "/Users/timothymorvan/Desktop/ai-fiscal-exposure/output/tables/amplification_by_contrast_group.csv": "sha256:119b82dca95387242a837ee89472794c9cb599b4c45af74842170755f1106280",
+      "/Users/timothymorvan/Desktop/ai-fiscal-exposure/output/tables/cutoff_sensitivity.csv": "sha256:1826bb4403a3052fc77ce546cbc245ba8a98a27564425fcef3a89fa053cf6d22",
+      "/Users/timothymorvan/Desktop/ai-fiscal-exposure/output/figures/fig1_fiscal_exposure.png": "sha256:980ff6ebc92be37576c4157eddaf24346c9f5a267ccf25e18c217989d5fdc6ef",
+      "/Users/timothymorvan/Desktop/ai-fiscal-exposure/output/figures/fig1_fiscal_exposure.pdf": "sha256:647fb2b9c88574ae0ec37457b87777ea80b7920a5610929b53e38bccfe7682b2",
+      "/Users/timothymorvan/Desktop/ai-fiscal-exposure/output/tables/results.json": "sha256:52de063805fd78efa38452db88023b8236a3f0339e518c7b2f067cd2ec98c534"
     },
     "params": {},
     "metrics": {},
+    "git_revision": "3f27a87557d07f3c7aacdf37c0cde5d7c5937844",
+    "python": "3.13.2"
+  },
+  {
+    "step": "01_fetch:aei",
+    "started_at": "2026-07-24T23:29:39+00:00",
+    "finished_at": "2026-07-24T23:29:42+00:00",
+    "inputs": {},
+    "outputs": {},
+    "params": {
+      "repo": "Anthropic/EconomicIndex"
+    },
+    "metrics": {
+      "files_downloaded": 9
+    },
+    "git_revision": "3f27a87557d07f3c7aacdf37c0cde5d7c5937844",
+    "python": "3.13.2"
+  },
+  {
+    "step": "02_build:exposure",
+    "started_at": "2026-07-24T23:41:41+00:00",
+    "finished_at": "2026-07-24T23:41:42+00:00",
+    "inputs": {},
+    "outputs": {},
+    "params": {},
+    "metrics": {
+      "n_occupations": 756,
+      "mean_exposure": 0.07697671957671957
+    },
+    "git_revision": "3f27a87557d07f3c7aacdf37c0cde5d7c5937844",
+    "python": "3.13.2"
+  },
+  {
+    "step": "02_build:cps",
+    "started_at": "2026-07-24T23:41:42+00:00",
+    "finished_at": "2026-07-24T23:41:43+00:00",
+    "inputs": {},
+    "outputs": {},
+    "params": {},
+    "metrics": {
+      "rows_final": 137607,
+      "weighted_final": 329900952.1
+    },
+    "git_revision": "3f27a87557d07f3c7aacdf37c0cde5d7c5937844",
+    "python": "3.13.2"
+  },
+  {
+    "step": "02_build:crosswalk",
+    "started_at": "2026-07-24T23:41:43+00:00",
+    "finished_at": "2026-07-24T23:41:43+00:00",
+    "inputs": {},
+    "outputs": {},
+    "params": {},
+    "metrics": {
+      "error": "FileNotFoundError: No crosswalk matching 'crosswalk/*.csv' under /Users/timothymorvan/Desktop/ai-fiscal-exposure/data/raw. See data/README.md for retrieval instructions."
+    },
     "git_revision": "3f27a87557d07f3c7aacdf37c0cde5d7c5937844",
     "python": "3.13.2"
   }

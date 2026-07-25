@@ -75,8 +75,6 @@ class CPSCfg:
     min_age: int = 16
     max_age: int = 99
     require_positive_wage: bool = True
-    employed_only: bool = True
-    occ_width: int = 4  # Census occupation codes are 4-digit, zero-padded
 
 
 @dataclass(frozen=True)

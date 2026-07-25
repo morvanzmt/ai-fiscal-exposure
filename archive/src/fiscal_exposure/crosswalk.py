@@ -80,8 +80,8 @@ def load_crosswalk(cfg: Config) -> pd.DataFrame:
         cols[cw.weight_col] = "weight"
     out = df[list(cols)].rename(columns=cols)
 
-    out["from_code"] = out["from_code"].astype(str).str.strip().str.upper()
-    out["to_code"] = out["to_code"].astype(str).str.strip().str.zfill(4)
+    out["from_code"] = out["from_code"].astype(str).str.strip()
+    out["to_code"] = out["to_code"].astype(str).str.strip()
     if "weight" not in out.columns:
         out["weight"] = 1.0
     out["weight"] = pd.to_numeric(out["weight"], errors="coerce").fillna(0.0)

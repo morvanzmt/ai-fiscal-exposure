@@ -1,0 +1,79 @@
+# Real-data configuration.
+#
+# Schemas pinned from the inspection run of 2026-07-25. Copy this to
+# config/config.yaml and run:
+#
+#   python scripts/01c_build_crosswalk.py
+#   python scripts/02_build_dataset.py --config config/config.yaml
+
+paths:
+  raw: data/raw
+  interim: data/interim
+  figures: output/figures
+  tables: output/tables
+  manifest: output/manifest.json
+
+exposure:
+  # Anthropic Economic Index, labor_market_impacts/job_exposure.csv (CC-BY).
+  # Columns: occ_code, title, observed_exposure.
+  # NOTE: occ_code is 6-digit SOC 2018 (e.g. 11-1011), NOT 8-digit O*NET-SOC.
+  source: anthropic_economic_index
+  file_glob: "aei/labor_market_impacts/job_exposure.csv"
+  occ_col: occ_code
+  score_col: observed_exposure
+  occ_code_kind: soc2018
+  score_range: [0.0, 1.0]
+
+crosswalk:
+  # Built by scripts/01c_build_crosswalk.py from the Census Bureau's
+  # 2018 Census Occupation Code List with Crosswalk.
+  # https://www.census.gov/topics/employment/industry-occupation/guidance/code-lists.html
+  source: census_2018_occupation_code_list
+  file_glob: "crosswalk/soc2018_to_census2018.csv"
+  from_col: from_code    # SOC 2018
+  to_col: to_code        # 4-digit Census occupation code
+  weight_col: null       # optional: add BLS OES employment for many-to-one means
+
+cps:
+  # IPUMS CPS ASEC extract, ASEC 2024 + 2025, csv.gz.
+  # OCC is the contemporary Census occupation code, which is the 2018 basis for
+  # these years and therefore the correct join key for the Census crosswalk.
+  # If the match rate comes back poor, try occ_col: occ2010 with the
+  # corresponding 2010 Census code list instead.
+  source: ipums
+  file_glob: "cps/*.csv.gz"
+  weight_col: asecwt
+  occ_col: occ
+  wage_col: incwage
+  year_col: year
+  min_age: 16
+  max_age: 99
+  require_positive_wage: true
+  employed_only: true
+  occ_width: 4
+
+analysis:
+  n_quantiles: 4
+  quantile_weight: employment
+  treatment_cutoffs: [0.50, 0.60, 0.70, 0.75, 0.90, 0.95]
+  zero_exposure_threshold: 0.0
+  payroll_taxable_max: null
+  seed: 20260726
+
+tax:
+  method: approx
+  year: 2025
+  # VERIFY BOTH before publishing:
+  #   taxable_max        https://www.ssa.gov/oact/cola/cbb.html
+  #   brackets, deduction  the relevant IRS Revenue Procedure
+  taxable_max: 176100.0
+  standard_deduction: 15000.0
+  source: "UNVERIFIED placeholder - replace with cited IRS/SSA values"
+  brackets:
+    - [0, 0.10]
+    - [11925, 0.12]
+    - [48475, 0.22]
+    - [103350, 0.24]
+    - [197300, 0.32]
+    - [250525, 0.35]
+    - [626350, 0.37]

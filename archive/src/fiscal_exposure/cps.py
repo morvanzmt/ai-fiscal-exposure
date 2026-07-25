@@ -27,17 +27,6 @@ from fiscal_exposure.exposure import read_any
 
 REQUIRED = ("weight", "cps_occ", "wage", "year")
 
-# IPUMS uses sentinel values, not blanks, for missing and not-in-universe.
-# INCWAGE: 99999999 = N.I.U., 99999998 = missing. Read as numbers they would be
-# treated as $100m salaries and would dominate every weighted total, so they
-# must be cleared before any arithmetic.
-IPUMS_NIU = (99999999, 99999998, 9999999)
-
-# OCC = 0 is "N.I.U. (not in universe)": people not employed. They carry no
-# occupation and therefore no exposure, and belong outside the wage-base
-# universe rather than in an unmatched bucket.
-OCC_NIU = "0000"
-
 
 def load_cps(cfg: Config) -> pd.DataFrame:
     """Load CPS ASEC persons, normalised to ``[year, cps_occ, wage, weight]``.
@@ -69,22 +58,11 @@ def load_cps(cfg: Config) -> pd.DataFrame:
         )
     df = df.rename(columns=rename)
 
-    # Census occupation codes are 4-digit strings with meaningful leading zeros
-    # (0010 Chief Executives). Read from CSV they arrive as integers, so 0010
-    # becomes 10 and silently fails to match the crosswalk.
-    occ = pd.to_numeric(df["cps_occ"], errors="coerce")
-    if occ.notna().all():
-        df["cps_occ"] = occ.astype("Int64").astype(str).str.zfill(c.occ_width)
-    else:
-        df["cps_occ"] = df["cps_occ"].astype(str).str.strip().str.zfill(c.occ_width)
-
+    df["cps_occ"] = df["cps_occ"].astype(str).str.strip()
     for col in ("weight", "wage"):
         df[col] = pd.to_numeric(df[col], errors="coerce")
-
-    df.loc[df["wage"].isin(IPUMS_NIU), "wage"] = pd.NA
-    df["wage"] = pd.to_numeric(df["wage"], errors="coerce")
-
     df = df.dropna(subset=["weight", "wage", "cps_occ"])
+
     return df.reset_index(drop=True)
 
 
@@ -110,12 +88,6 @@ def apply_universe(df: pd.DataFrame, cfg: Config) -> tuple[pd.DataFrame, dict]:
     if "age" in work.columns:
         age = pd.to_numeric(work["age"], errors="coerce")
         work = _record("age", work[(age >= c.min_age) & (age <= c.max_age)])
-    if c.employed_only and "empstat" in work.columns:
-        # IPUMS EMPSTAT: 10 = At work, 12 = Has job, not at work last week.
-        empstat = pd.to_numeric(work["empstat"], errors="coerce")
-        work = _record("employed", work[empstat.isin([10, 12])])
-    # OCC = 0000 is not-in-universe; these people have no occupation to score.
-    work = _record("occupation_in_universe", work[work["cps_occ"] != OCC_NIU])
     if c.require_positive_wage:
         work = _record("positive_wage", work[work["wage"] > 0])
     work = _record("positive_weight", work[work["weight"] > 0])
